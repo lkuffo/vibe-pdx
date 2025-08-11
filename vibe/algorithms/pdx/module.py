@@ -53,7 +53,7 @@ class PDXIVF(BaseANN):
         return I
 
     def __str__(self):
-        str_template = "PDXIVF(nc=%.2 * sqrt(n), cs=%d, pruning_confidence=%d)"
+        str_template = "PDXIVF(nc=%.2f * sqrt(n), cs=%d, pruning_confidence=%d)"
         return str_template % (
             self.n_clusters_factor,
             self.clusters_to_search,
