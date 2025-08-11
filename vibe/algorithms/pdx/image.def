@@ -3,7 +3,7 @@ From: base.sif
 
 %post
 
-  apt-get install -y --no-install-recommends lsb-release
+  apt-get install -y --no-install-recommends lsb-release wget software-properties-common gnupg
 
   bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
