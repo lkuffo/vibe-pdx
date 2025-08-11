@@ -93,7 +93,7 @@ float:
         query_args: [[1, 2, 4, 8, 16, 32, 64, 128, 256, 512]]
   - base_args: ['@metric']
     constructor: FaissIVFRaBitQ
-    disabled: true
+    disabled: false
     singularity_image: faiss
     module: vibe.algorithms.faiss
     name: ivf-rabitq(faiss)

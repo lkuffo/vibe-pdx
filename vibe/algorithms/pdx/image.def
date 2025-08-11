@@ -1,0 +1,29 @@
+Bootstrap: localimage
+From: base.sif
+
+%post
+
+  wget https://www.fftw.org/fftw-3.3.10.tar.gz
+  tar -xvzf fftw-3.3.10.tar.gz
+  cd fftw-3.3.10
+  ./configure --enable-float --enable-shared
+  make
+  make install
+  cd ..
+
+  ldconfig
+
+  git clone https://github.com/cwida/PDX
+
+  cd PDX
+  git config --global --add safe.directory /PDX
+  git reset --hard 4327325e0df7be883f53934a736340154cd6bee8
+  git submodule init
+  git submodule update
+
+  export CXX=$(which clang++)
+  pip install --no-cache-dir -r requirements.txt
+  pip install --no-cache-dir faiss-cpu=1.11.0
+  python3 setup.py clean --all
+  python3 -m pip install .
+
