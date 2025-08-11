@@ -17,13 +17,17 @@ class PDXIVF(BaseANN):
 
         n_clusters = self.n_clusters_factor * math.ceil(math.sqrt(n_samples))
 
+        print("n_clusters:", n_clusters)
+        print('Normalizing')
         norms = np.linalg.norm(X, axis=1, keepdims=True)
         norms[norms == 0] = 1 # Prevent bug if a vector is full of 0's
         X /= norms
 
         self.index = IndexPDXIMISQ8(ndim=dim, nbuckets=n_clusters, normalize=True)
+        print('Preprocessing')
         train = self.index.preprocess(X, inplace=False)
 
+        print('Training')
         if self.train_frac < 1.0:
             training_points = math.floor(n_samples * self.train_frac)
             rng = np.random.default_rng()
@@ -33,6 +37,7 @@ class PDXIVF(BaseANN):
         else:
             self.index.train(train)
 
+        print('Adding')
         self.index.add_load(train)
 
 
