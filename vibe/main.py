@@ -460,8 +460,6 @@ def main():
         force=args.force,
     )
 
-    print(definitions)
-
     if args.module:
         logger.info(f"running only algorithms for module {args.module}")
         definitions = [d for d in definitions if d.module.replace("vibe.algorithms.", "") == args.module]
