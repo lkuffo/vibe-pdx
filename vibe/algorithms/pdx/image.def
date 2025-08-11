@@ -3,10 +3,12 @@ From: base.sif
 
 %post
 
+  bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+
   wget https://www.fftw.org/fftw-3.3.10.tar.gz
   tar -xvzf fftw-3.3.10.tar.gz
   cd fftw-3.3.10
-  ./configure --enable-float --enable-shared
+  ./configure --quiet --enable-float --enable-shared
   make -s
   make -s install
   cd ..
@@ -21,7 +23,7 @@ From: base.sif
   git submodule init
   git submodule update
 
-  export CXX='/usr/bin/clang++'
+  export CXX=$(which clang++)
   pip install --no-cache-dir -r requirements.txt
   pip install --no-cache-dir faiss-cpu==1.11.0
   python3 setup.py clean --all
