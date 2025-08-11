@@ -18,10 +18,9 @@ class PDXIVF(BaseANN):
         n_clusters = self.n_clusters_factor * math.ceil(math.sqrt(n_samples))
 
         print("n_clusters:", n_clusters)
-        print('Normalizing')
-        norms = np.linalg.norm(X, axis=1, keepdims=True)
-        norms[norms == 0] = 1 # Prevent bug if a vector is full of 0's
-        X /= norms
+        # norms = np.linalg.norm(X, axis=1, keepdims=True)
+        # norms[norms == 0] = 1 # Prevent bug if a vector is full of 0's
+        # X /= norms
 
         self.index = IndexPDXIMISQ8(ndim=dim, nbuckets=n_clusters, normalize=True)
         print('Preprocessing')
@@ -50,6 +49,7 @@ class PDXIVF(BaseANN):
 
     def query(self, q, n):
         I, D = self.index.search(q, n, nprobe=self.clusters_to_search)
+        print(I)
         return I
 
     def __str__(self):
