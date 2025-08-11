@@ -5,7 +5,7 @@ From: base.sif
 
   apt-get install -y --no-install-recommends lsb-release wget software-properties-common gnupg
 
-  bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+  bash -c "$(wget -O - https://apt.llvm.org/llvm.sh 18)"
 
   wget https://www.fftw.org/fftw-3.3.10.tar.gz
   tar -xvzf fftw-3.3.10.tar.gz
@@ -25,7 +25,7 @@ From: base.sif
   git submodule init
   git submodule update
 
-  export CXX=$(which clang++)
+  export CXX=$(which clang++-18)
   pip install --no-cache-dir -r requirements.txt
   pip install --no-cache-dir faiss-cpu==1.11.0
   python3 setup.py clean --all
