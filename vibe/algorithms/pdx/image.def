@@ -29,7 +29,8 @@ From: base.sif
 
   export CXX=$(which clang++-18)
   pip install --no-cache-dir -r requirements.txt
-  pip install --no-cache-dir faiss-cpu==1.11.0
+  micromamba install -y -q -c conda-forge -c pytorch faiss-cpu=1.11.0
+  micromamba clean --all --yes
   python3 setup.py clean --all
   python3 -m pip install .
 
