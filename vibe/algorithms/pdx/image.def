@@ -21,7 +21,7 @@ From: base.sif
   git submodule init
   git submodule update
 
-  export CXX=$(which clang++-18)
+  export CXX='/usr/bin/clang++'
   pip install --no-cache-dir -r requirements.txt
   pip install --no-cache-dir faiss-cpu==1.11.0
   python3 setup.py clean --all
