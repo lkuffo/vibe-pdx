@@ -68,7 +68,6 @@ def run_individual_query(
             orig_candidates = numpy.array(candidates, copy=True)  # copy to avoid reference reuse
             dists = metrics[distance].distance(v, X_train[orig_candidates])
             candidates = [(int(idx), float(dist)) for idx, dist in zip(orig_candidates, dists)]
-            print(candidates)
 
             # candidates = [
             #     (int(idx), float(dist))
@@ -146,6 +145,7 @@ def run_individual_query(
     additional = algo.get_additional()
     for k in additional:
         attrs[k] = additional[k]
+    print(results)
     return (attrs, results)
 
 
