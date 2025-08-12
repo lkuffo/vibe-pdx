@@ -29,6 +29,7 @@ def run_individual_query(
     Returns:
         tuple: A tuple with the attributes of the algorithm run and the results.
     """
+    import numpy
     from .distance import metrics
 
     prepared_queries = (batch and hasattr(algo, "prepare_batch_query")) or (
