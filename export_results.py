@@ -48,6 +48,7 @@ def compute_metrics(path, data_dir):
                 true_distances[dataset], hfp[query_params]["distances"], hfp[query_params].attrs["count"]
             )
             print(hfp[query_params]['recalls'][:])
+            print(hfp[query_params]['neighbors'][:])
 
 
 def export_results(path, data_dir):
