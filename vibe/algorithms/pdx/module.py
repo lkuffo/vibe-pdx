@@ -49,11 +49,10 @@ class PDXIVF(BaseANN):
 
     def query(self, q, n):
         I, D = self.index.search(q, n, nprobe=self.clusters_to_search)
-        print(I)
-        return I
+        return I, D
 
     def __str__(self):
-        str_template = "PDXIVF(nc=%.2f * sqrt(n), cs=%d, pruning_confidence=%d)"
+        str_template = "PDXIVF(nc=%.1f * sqrt(n), cs=%d, pruning_confidence=%.1f)"
         return str_template % (
             self.n_clusters_factor,
             self.clusters_to_search,
