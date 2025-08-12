@@ -34,6 +34,6 @@ From: base.sif
   python3 setup.py clean --all
   python3 -m pip install .
 
-  python3 -c "import ctypes.util; print("Here LEO: ", ctypes.util.find_library('fftw3f'))"
+  python3 -c "import ctypes.util; print('Here LEO: ', ctypes.util.find_library('fftw3f'))"
   ldconfig -p | grep libfftw3f.so
 
