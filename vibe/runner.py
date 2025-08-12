@@ -64,7 +64,7 @@ def run_individual_query(
             # make sure all returned indices are unique
             # assert len(candidates) == len(set(candidates)), "Implementation returned duplicated candidates"
 
-            orig_candidates = np.array(candidates, copy=True)  # copy to avoid reference reuse
+            orig_candidates = numpy.array(candidates, copy=True)  # copy to avoid reference reuse
             dists = metrics[distance].distance(v, X_train[orig_candidates])
             candidates = [(int(idx), float(dist)) for idx, dist in zip(orig_candidates, dists)]
 
