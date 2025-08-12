@@ -20,9 +20,6 @@ from collections import defaultdict
 
 def get_recall_values(dataset_distances, run_distances, count, epsilon=1e-3):
     recalls = np.zeros(len(run_distances))
-    print(len(run_distances))
-    print(run_distances[:])
-    print(dataset_distances[:])
     for i in range(len(run_distances)):
         t = dataset_distances[i][count - 1] + epsilon
         recalls[i] = (run_distances[i][:count] <= t).sum()
@@ -39,16 +36,10 @@ def compute_metrics(path, data_dir):
     with h5py.File(path, "r+") as hfp:
         for query_params in hfp.keys():
             dataset = hfp[query_params].attrs["dataset"]
-            print('Here', query_params)
-            # if "recalls" not in hfp[query_params]:
-            print('Calculating recalls')
-            if "recalls" in hfp[query_params]:
-                del hfp[query_params]["recalls"]
-            hfp[query_params]["recalls"] = get_recall_values(
-                true_distances[dataset], hfp[query_params]["distances"], hfp[query_params].attrs["count"]
-            )
-            print(hfp[query_params]['recalls'][:])
-            print(hfp[query_params]['neighbors'][:])
+            if "recalls" not in hfp[query_params]:
+                hfp[query_params]["recalls"] = get_recall_values(
+                    true_distances[dataset], hfp[query_params]["distances"], hfp[query_params].attrs["count"]
+                )
 
 
 def export_results(path, data_dir):
