@@ -39,6 +39,8 @@ def compute_metrics(path, data_dir):
             print('Here', query_params)
             # if "recalls" not in hfp[query_params]:
             print('Calculating recalls')
+            if "recalls" in hfp[query_params]:
+                del hfp[query_params]["recalls"]
             hfp[query_params]["recalls"] = get_recall_values(
                 true_distances[dataset], hfp[query_params]["distances"], hfp[query_params].attrs["count"]
             )
