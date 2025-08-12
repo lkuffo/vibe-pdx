@@ -20,6 +20,9 @@ from collections import defaultdict
 
 def get_recall_values(dataset_distances, run_distances, count, epsilon=1e-3):
     recalls = np.zeros(len(run_distances))
+    print(len(run_distances))
+    print(run_distances[:])
+    print(dataset_distances[:])
     for i in range(len(run_distances)):
         t = dataset_distances[i][count - 1] + epsilon
         recalls[i] = (run_distances[i][:count] <= t).sum()
